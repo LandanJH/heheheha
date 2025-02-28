@@ -83,9 +83,9 @@ accounts() {
         echo "$account_name:$new_password" | sudo chpasswd
         
         if [ $? -eq 0 ]; then
-            echo "Password changed for $account_name"
+            echo -e "${GREEN}  [*] Password changed for $account_name ${NC}"
         else
-            echo "Failed to change password for $account_name"
+            echo -e "${RED}  [!] Failed to change password for $account_name ${NC}"
         fi
     done
 

@@ -1,0 +1,45 @@
+# Disable root login for security
+PermitRootLogin no
+
+# Allow only specific users (adjust usernames accordingly)
+AllowUsers landan
+
+# Change the default SSH port (Avoid 22 to reduce brute-force attempts)
+Port 2222  # Choose a high, unused port
+
+# Disable password authentication (use SSH keys instead)
+# PasswordAuthentication is temporary, after esablished grab ssh keys and switch this to "no"
+PasswordAuthentication yes
+PermitEmptyPasswords no
+
+# Enable public key authentication
+# uncomment this line after established and ssh keys are set
+# PubkeyAuthentication yes
+
+# Disable SSH protocol 1 (outdated)
+Protocol 2
+
+# Limit the number of authentication attempts
+MaxAuthTries 3
+
+# Enable strict mode for key exchange, MACs, and ciphers
+KexAlgorithms curve25519-sha256,ecdh-sha2-nistp521,ecdh-sha2-nistp384,ecdh-sha2-nistp256
+Ciphers aes256-gcm@openssh.com,aes128-gcm@openssh.com,chacha20-poly1305@openssh.com
+MACs hmac-sha2-512,hmac-sha2-256,umac-128-etm@openssh.com
+
+# Disable X11 forwarding unless needed
+X11Forwarding no
+
+# Disable TCP forwarding unless necessary
+AllowTcpForwarding no
+PermitTunnel no
+
+# Enable logging
+LogLevel VERBOSE
+
+# Limit simultaneous unauthenticated connections
+MaxStartups 3:50:10
+
+# Restrict client keepalive settings
+ClientAliveInterval 300
+ClientAliveCountMax 2
